@@ -14,7 +14,7 @@ P1,P2,P3,Pc,Pr,Pb,A,b,Pcen,thetac = None,None,None,None,None,None,None,None,None
 camera_cmd_vel = Twist()
 fx,fy,lx,ly = 565.6,565.6,640,480
 sigma_u,sigma_v,sigma_ranging,sigma_bearing,sigma_alpha = 0.007,0.007,0.01,0.01,0.01
-'''
+
 x_fov_wealth = 3*pi/180 #exp
 y_fov_wealth = 3*pi/180 #
 height_l = 0.2 #
@@ -28,6 +28,7 @@ height_l = 0.5 #
 height_u = 2 #
 d_safe_car = 2 #
 d_measuring = 7 #
+'''
 d_safe_uav = 1
 d_communication = 20
 m,x = None,None
@@ -109,8 +110,8 @@ def addCons(i):
 def	qpsolver():
 	global camera_cmd_vel,x
 	
-	#obj = -(x[0] - (P1 - Pc)[0])**2 - (x[1] - (P1 - Pc)[1])**2 + (x[2] - (P1 - Pc)[2])**2 - (x[0] - (P2 - Pc)[0])**2 - (x[1] - (P2 - Pc)[1])**2 + (x[2] - (P2 - Pc)[2])**2 - (x[0] - (P3 - Pc)[0])**2 - (x[1] - (P3 - Pc)[1])**2 + (x[2] - (P3 - Pc)[2])**2 + (thetac + x[3] - atan2((P1-Pc)[1],(P1-Pc)[0]))**2 + (thetac + x[3] - atan2((P2-Pc)[1],(P2-Pc)[0]))**2 + (thetac + x[3] - atan2((P3-Pc)[1],(P3-Pc)[0]))**2	# worst
-	obj = (x[0] - (P1 - Pc)[0])**2 + (x[1] - (P1 - Pc)[1])**2 - (x[2] - (P1 - Pc)[2])**2 + (x[0] - (P2 - Pc)[0])**2 + (x[1] - (P2 - Pc)[1])**2 - (x[2] - (P2 - Pc)[2])**2 + (x[0] - (P3 - Pc)[0])**2 + (x[1] - (P3 - Pc)[1])**2 - (x[2] - (P3 - Pc)[2])**2 - (thetac + x[3] - atan2((P1-Pc)[1],(P1-Pc)[0]))**2 - (thetac + x[3] - atan2((P2-Pc)[1],(P2-Pc)[0]))**2 - (thetac + x[3] - atan2((P3-Pc)[1],(P3-Pc)[0]))**2	# optimal
+	obj = -(x[0] - (P1 - Pc)[0])**2 - (x[1] - (P1 - Pc)[1])**2 + (x[2] - (P1 - Pc)[2])**2 - (x[0] - (P2 - Pc)[0])**2 - (x[1] - (P2 - Pc)[1])**2 + (x[2] - (P2 - Pc)[2])**2 - (x[0] - (P3 - Pc)[0])**2 - (x[1] - (P3 - Pc)[1])**2 + (x[2] - (P3 - Pc)[2])**2 + (thetac + x[3] - atan2((P1-Pc)[1],(P1-Pc)[0]))**2 + (thetac + x[3] - atan2((P2-Pc)[1],(P2-Pc)[0]))**2 + (thetac + x[3] - atan2((P3-Pc)[1],(P3-Pc)[0]))**2	# worst
+	#obj = (x[0] - (P1 - Pc)[0])**2 + (x[1] - (P1 - Pc)[1])**2 - (x[2] - (P1 - Pc)[2])**2 + (x[0] - (P2 - Pc)[0])**2 + (x[1] - (P2 - Pc)[1])**2 - (x[2] - (P2 - Pc)[2])**2 + (x[0] - (P3 - Pc)[0])**2 + (x[1] - (P3 - Pc)[1])**2 - (x[2] - (P3 - Pc)[2])**2 - (thetac + x[3] - atan2((P1-Pc)[1],(P1-Pc)[0]))**2 - (thetac + x[3] - atan2((P2-Pc)[1],(P2-Pc)[0]))**2 - (thetac + x[3] - atan2((P3-Pc)[1],(P3-Pc)[0]))**2	# optimal
 	m.setObjective(obj)
 
 	m.remove(m.getConstrs())
